@@ -1,2 +1,2 @@
 # lokalise-cli
-Lokalise command-line tool.
+Lokalise command-line tool Docker image.
