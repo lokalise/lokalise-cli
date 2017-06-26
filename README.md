@@ -1,4 +1,32 @@
-# lokalise-cli
-Lokalise command-line tool Docker image.
-
+### Description 
+Lokalise command line tool in Docker container. Use it to import/export data with Lokalise (https://lokalise.co).
 https://hub.docker.com/r/lokalise/lokalise-cli/
+
+### Export from Lokalise to local directory
+    API_TOKEN=<your api token>
+    PROJECT_ID=<project id>
+    LOCAL_DIR=/tmp
+    FILE_FORMAT=json
+
+    docker run \
+        	-v ${LOCAL_DIR}:/opt/dest \
+        	lokalise/lokalise-cli lokalise \
+        	--token ${API_TOKEN} \
+        	export ${PROJECT_ID} \
+        	--type json \
+        	--dest /opt/dest
+
+
+### Import local file to Lokalise
+    API_TOKEN=<your api token>
+    PROJECT_ID=<project id>
+    LOCAL_FILE=/tmp/en.json
+    LANG_ISO=en
+
+    docker run \
+        	-v ${LOCAL_FILE}:/opt/src/${LOCAL_FILE} \
+        	lokalise/lokalise-cli lokalise \
+        	--token ${API_TOKEN} \
+        	import ${PROJECT_ID} \
+        	--file /opt/src/${LOCAL_FILE} \
+        	--lang_iso ${LANG_ISO}
